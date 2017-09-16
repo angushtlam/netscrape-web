@@ -30,10 +30,13 @@ def _do_scrape_request(scrape_id):
         return
 
     schema = json.loads(scrape.schema)
+    schema_keys = list(schema.keys())
+    schema_values = list(schema.values())
+
     result = []
-    for page_selections in parse_pages(scrape.url_pattern, schema.values()):
+    for page_selections in parse_pages(scrape.url_pattern, schema_values):
         for i, selection in enumerate(page_selections):
-            result.append({schema.keys()[i]: selection})
+            result.append({schema_keys[i]: selection})
 
     scrape.result = json.dumps(result)
     scrape.completed = True
@@ -77,7 +80,7 @@ def schema_result(scrape_id):
     if not scrape.completed:
         return jsonify(completed=False)
 
-    return jsonify(completed=True), 501
+    return jsonify(completed=True, result=-scrape.result), 200
 
 
 if __name__ == "__main__":
