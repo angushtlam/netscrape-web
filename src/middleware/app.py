@@ -80,7 +80,7 @@ def schema_result(scrape_id):
     if not scrape.completed:
         return jsonify(completed=False)
 
-    return jsonify(completed=True, result=scrape.result)
+    return jsonify(completed=True, result=json.loads(scrape.result))
 
 
 if __name__ == "__main__":
