@@ -10,17 +10,11 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 
 
-class ScrapeStatus:
-    NEEDS_SCHEMA = 1
-    IN_PROGRESS = 2
-    COMPLETED = 3
-
-
 class Scrape(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
-    status = db.Column(db.Integer())
+    completed = db.Column(db.Boolean(), default=False)
     url_pattern = db.Column(db.String())
-    selectors = db.Column(db.String())
+    schema = db.Column(db.String())
 
 
 @app.route("/")
@@ -29,30 +23,26 @@ def index():
 
 
 @app.route("/scrape", methods=["POST"])
-def scrape():
+def scrape_request():
     data = request.get_json()
 
     url_pattern = data["url_pattern"]
-    selectors = data["selectors"]
+    schema = data["schema"]
 
     if not isinstance(url_pattern, str):
         return jsonify(error="Invalid 'url_pattern'"), 400
-    if not isinstance(selectors, list) or not selectors:
-        return jsonify(error="Invalid 'selectors'"), 400
+    if not isinstance(schema, dict) or not schema:
+        return jsonify(error="Invalid 'schema'"), 400
 
-    scrape = Scrape(status=ScrapeStatus.NEEDS_SCHEMA, url_pattern=url_pattern, selectors=json.dumps(selectors))
+    scrape = Scrape(url_pattern=url_pattern, schema=json.dumps(schema))
     db.session.add(scrape)
     db.session.commit()
+    # TODO: start the parsing as a background task
     return jsonify(id=scrape.id), 201
 
 
-@app.route("/schema/<scrape_id>", methods=["POST"])
-def schema(scrape_id):
-    return jsonify(), 501
-
-
-@app.route("/result/<scrape_id>", methods=["POST"])
-def result(scrape_id):
+@app.route("/scrape/<scrape_id>")
+def schema_result(scrape_id):
     return jsonify(), 501
 
 
