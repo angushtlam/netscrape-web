@@ -9,14 +9,14 @@ module.exports = {
   module: {
     loaders: [
       // Load styling
-      // {
-      //   test: /\.(css|scss)$/,
-      //   loader: [
-      //     'style-loader',
-      //     { loader: 'css-loader', options: { modules: true } },
-      //     'sass-loader',
-      //   ],
-      // },
+      {
+        test: /\.(css|scss)$/,
+        loader: [
+          'style-loader',
+          { loader: 'css-loader', options: { modules: true } },
+          'sass-loader',
+        ],
+      },
       // Load graphical assets
       {
         test: /\.(jpg|png|svg)$/,
