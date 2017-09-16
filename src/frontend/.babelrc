@@ -1,0 +1,13 @@
+{
+  "presets": [
+    "env",
+    "es2015",
+    "react"
+  ],
+  "plugins": [
+    [
+      "babel-plugin-root-import",
+      { "rootPathSuffix": "src/frontend", "rootPathPrefix": "~" }
+    ]
+  ]
+}
