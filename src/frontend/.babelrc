@@ -7,7 +7,7 @@
   "plugins": [
     [
       "babel-plugin-root-import",
-      { "rootPathSuffix": "src/frontend", "rootPathPrefix": "~" }
+      { "rootPathSuffix": "", "rootPathPrefix": "~" }
     ]
   ]
 }

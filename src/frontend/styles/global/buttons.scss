@@ -38,6 +38,7 @@ $button-radius: 3em;
 
   &:hover {
     background-color: $accent-muted-color;
+    color: $white-color;
   }
 
   &:disabled,

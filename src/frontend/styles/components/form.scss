@@ -1,0 +1,11 @@
+@import '../variables';
+
+.component__form {
+  background-color: $accent-muted-color;
+  color: $white-color;
+  padding: $interaction-size 0 $interaction-size * 2 0;
+
+  > .container > .links {
+    padding-top: $spacing;
+  }
+}
