@@ -16,7 +16,7 @@ class TestResolver(unittest.TestCase):
         self.assertCountEqual(expected, actual)
 
     def test_resolve_no_pattern(self):
-        expected = []
+        expected = ["http://example.com/hello"]
         actual = list(resolve_url_pattern("http://example.com/hello"))
         self.assertCountEqual(expected, actual)
 
