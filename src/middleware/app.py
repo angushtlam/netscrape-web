@@ -4,6 +4,8 @@ from celery import Celery
 from flask import Flask, jsonify, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 
+from utils.parser import parse_pages
+
 
 app = Flask(__name__)
 app.config["CELERY_BROKER_URL"] = "redis://localhost:6379/0"
@@ -18,11 +20,24 @@ class Scrape(db.Model):
     completed = db.Column(db.Boolean(), default=False)
     url_pattern = db.Column(db.String())
     schema = db.Column(db.String())
+    result = db.Column(db.String())
 
 
 @celery.task
 def _do_scrape_request(scrape_id):
-    pass
+    scrape = Scrape.query.filter_by(id=scrape_id).first()
+    if scrape is None:
+        return
+
+    schema = json.loads(scrape.schema)
+    result = []
+    for page_selections in parse_pages(scrape.url_pattern, schema.values()):
+        for selection in enumerate(page_selections):
+            result.append({schema["keys"]: selection})
+
+    scrape.result = json.dumps(result)
+    scrape.completed = True
+    db.session.commit()
 
 
 @app.route("/")
@@ -67,4 +82,4 @@ def schema_result(scrape_id):
 
 if __name__ == "__main__":
     db.create_all()
-    app.run(host="0.0.0.0", debug=True)
+    app.run(debug=True)
