@@ -32,8 +32,8 @@ def _do_scrape_request(scrape_id):
     schema = json.loads(scrape.schema)
     result = []
     for page_selections in parse_pages(scrape.url_pattern, schema.values()):
-        for selection in enumerate(page_selections):
-            result.append({schema["keys"]: selection})
+        for i, selection in enumerate(page_selections):
+            result.append({schema.keys()[i]: selection})
 
     scrape.result = json.dumps(result)
     scrape.completed = True
