@@ -57,3 +57,8 @@ typings/
 # dotenv environment variables file
 .env
 
+# Python virtual environments
+venv/
+
+# Python cache
+__pycache__/
