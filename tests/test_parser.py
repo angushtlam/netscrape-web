@@ -1,6 +1,6 @@
 import unittest
 
-from lib.parser import parse_html, parse_page
+from utils.parser import parse_html
 
 
 class TestParser(unittest.TestCase):
