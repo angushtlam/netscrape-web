@@ -162,3 +162,4 @@ venv.bak/
 
 .DS_Store
 /src/middleware/static/bundles/
+yarn.lock

@@ -1,16 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import Form from './form'
+import './styles/base.scss'
 
-const styles = {
-  backgroundColor: '#1c858e',
-}
+import Form from './form'
 
 class App extends React.Component {
   render() {
     return (
-      <div style={styles}>
+      <div>
         <Form />
       </div>
     )

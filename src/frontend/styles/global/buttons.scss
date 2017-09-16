@@ -1,0 +1,50 @@
+@import './variables';
+
+$button-spacing: 0.8em;
+$button-font-size: 1.0em;
+$button-radius: 3em;
+
+.btn {
+  background-color: $white-color;
+  border-radius: $button-radius;
+  border: 1px solid $muted-color;
+  color: $print-color;
+  display: inline-block;
+  text-decoration: none;
+  font-size: $button-font-size;
+  font-weight: 900;
+  margin-right: $spacing;
+  padding: $button-spacing $button-spacing * 6 $button-spacing $button-spacing * 2;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  &:hover {
+    background-color: $muted-color;
+  }
+
+  &:disabled,
+  &[disabled] {
+    background-color: $muted-color;
+    cursor: not-allowed;
+  }
+}
+
+.btn-accent {
+  background-color: $accent-color;
+  border: 1px solid $muted-color;
+  color: $white-color;
+
+  &:hover {
+    background-color: $accent-muted-color;
+  }
+
+  &:disabled,
+  &[disabled] {
+    background-color: $muted-color;
+    border: 1px solid $accent-muted-secondary-color;
+    color: $accent-muted-color;
+    text-decoration: line-through;
+  }
+}
