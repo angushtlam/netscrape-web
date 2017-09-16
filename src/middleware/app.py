@@ -1,13 +1,16 @@
 import json
 
+from celery import Celery
 from flask import Flask, jsonify, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 
 
 app = Flask(__name__)
+app.config["CELERY_BROKER_URL"] = "redis://localhost:6379/0"
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.sqlite3"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
+celery = Celery(app.name, broker=app.config["CELERY_BROKER_URL"])
 
 
 class Scrape(db.Model):
@@ -15,6 +18,11 @@ class Scrape(db.Model):
     completed = db.Column(db.Boolean(), default=False)
     url_pattern = db.Column(db.String())
     schema = db.Column(db.String())
+
+
+@celery.task
+def _do_scrape_request(scrape_id):
+    pass
 
 
 @app.route("/")
@@ -40,7 +48,10 @@ def scrape_request():
     scrape = Scrape(url_pattern=url_pattern, schema=json.dumps(schema))
     db.session.add(scrape)
     db.session.commit()
-    # TODO: start the parsing as a background task
+
+    # Add the request to the task queue
+    _do_scrape_request.delay(scrape.id)
+
     return jsonify(id=scrape.id), 201
 
 
