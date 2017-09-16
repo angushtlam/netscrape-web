@@ -43,7 +43,12 @@ def scrape_request():
 
 @app.route("/scrape/<scrape_id>")
 def schema_result(scrape_id):
-    return jsonify(), 501
+    scrape = Scrape.query.filter_by(id=scrape_id).first_or_404()
+
+    if not scrape.completed:
+        return jsonify(completed=False)
+
+    return jsonify(completed=True), 501
 
 
 if __name__ == "__main__":
