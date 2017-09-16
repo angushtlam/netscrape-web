@@ -26,6 +26,9 @@ def index():
 def scrape_request():
     data = request.get_json()
 
+    if data is None:
+        return jsonify(error="No data provided"), 400
+
     url_pattern = data["url_pattern"]
     schema = data["schema"]
 
