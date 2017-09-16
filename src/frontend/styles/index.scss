@@ -24,3 +24,8 @@ body {
 #app {
   height: 100% !important;
 }
+
+hr {
+  margin: 3rem 0;
+  border-top: 1px dashed $muted-color;
+}

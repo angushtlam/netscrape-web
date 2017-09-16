@@ -36,7 +36,7 @@ export default class Hero extends React.Component {
       <div className="component__hero">
         <div className="wrapper">
           <div className="content">
-            <Particles style={ particleStyles } params={ particlesParam } height="75vh"/>
+            <Particles style={ particleStyles } params={ particlesParam } height="70vh"/>
             <div className="container">
               <h1>Netscrape</h1>
               <h5>HTML Web Scraping. Simplified.</h5>

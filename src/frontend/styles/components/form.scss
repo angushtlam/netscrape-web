@@ -5,7 +5,41 @@
   color: $white-color;
   padding: $interaction-size 0 $interaction-size * 2 0;
 
-  > .container > .links {
-    padding-top: $spacing;
+  > .container {
+    > h2 {
+      margin-bottom: $spacing;
+    }
+
+    > .form-submit {
+      padding-bottom: $interaction-size;
+      padding-top: $spacing;
+      text-align: center;
+      width: 100%;
+    }
+  }
+}
+
+.component__form_section {
+  margin-bottom: $interaction-size;
+
+  > .section-header {
+    align-items: center;
+    display: flex;
+
+    > .icon {
+      align-items: center;
+      display: inline-flex;
+      margin-right: $interaction-size;
+    }
+  
+    > .title {
+      display: inline-block;
+    }
+  }
+
+  > .section-body {
+    background-color: $white-color;
+    margin: $interaction-size 0 $interaction-size $interaction-size;
+    padding: $spacing;
   }
 }

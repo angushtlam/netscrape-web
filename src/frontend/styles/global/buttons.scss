@@ -4,6 +4,22 @@ $button-spacing: 0.8em;
 $button-font-size: 1.0em;
 $button-radius: 3em;
 
+button {
+  height: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  margin-bottom: 0;
+  text-transform: none;
+
+  &:active, &:focus {
+    color: inherit;
+  }
+
+  &:hover {
+    border-color: inherit;
+  }
+}
+
 .btn {
   background-color: $white-color;
   border-radius: $button-radius;
@@ -22,6 +38,8 @@ $button-radius: 3em;
 
   &:hover {
     background-color: $muted-color;
+    border: 1px solid $muted-color;
+    color: $print-color;
   }
 
   &:disabled,

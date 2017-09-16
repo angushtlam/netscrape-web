@@ -1,6 +1,6 @@
 import React from 'react';
 
-const WaveShape = ({ bottomColor = '#000', topColor = '#fff', }) => {
+const WaveShapeDivider = ({ bottomColor = '#000', topColor = '#fff', }) => {
   const wrapperStyles = {
     backgroundColor: topColor,
   }
@@ -27,4 +27,4 @@ const WaveShape = ({ bottomColor = '#000', topColor = '#fff', }) => {
   )
 }
 
-export default WaveShape;
+export default WaveShapeDivider;
