@@ -8,7 +8,7 @@ from utils.parser import parse_pages
 
 
 app = Flask(__name__)
-app.config["CELERY_BROKER_URL"] = "redis://34.228.142.72:6379/0"
+app.config["CELERY_BROKER_URL"] = "redis://localhost:6379/0"
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.sqlite3"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
@@ -70,7 +70,7 @@ def scrape_request():
     db.session.commit()
 
     # Add the request to the task queue
-    # _do_scrape_request.delay(scrape.id)
+    _do_scrape_request.delay(scrape.id)
 
     return jsonify(id=scrape.id), 201
 
