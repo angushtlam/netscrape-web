@@ -1,5 +1,6 @@
 from typing import Iterator, List
 
+import lxml
 from pyquery import PyQuery
 import requests
 
@@ -15,4 +16,4 @@ def parse_pages(url_pattern: str, selectors: List[str]) -> Iterator[List[List[st
 def parse_html(html: str, selectors: List[str]) -> Iterator[List[str]]:
     pq = PyQuery(html)
     for selector in selectors:
-        yield [element.text for element in pq(selector)]
+        yield [lxml.html.tostring(element, encoding=str) for element in pq(selector)]
