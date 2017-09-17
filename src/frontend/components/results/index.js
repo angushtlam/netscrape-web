@@ -23,7 +23,7 @@ export default class Results extends React.Component {
       console.log(json)
       this.setState({
         completed: json.completed,
-        results: json.results || null,
+        results: json.result || null,
       })
     })
 
@@ -39,7 +39,7 @@ export default class Results extends React.Component {
         console.log(json)
         this.setState({
           completed: json.completed,
-          results: json.results || null,
+          results: json.result || null,
         })
 
         if (json.completed) {
@@ -63,7 +63,7 @@ export default class Results extends React.Component {
             <Icon name="refresh" description="loading" fill="white" size="large" />
           }
           <hr />
-          { results ? (
+          { completed ? (
             <div>
               <div className="results-blob">{ results }</div>
               <hr />

@@ -7,11 +7,11 @@ import SelectElements from './select_elements'
 import UrlPattern from './url_pattern'
 
 export default class Form extends React.Component {
-  constructor() {
-    super()
-
+  constructor(props) {
+    super(props)
+    
     this.state = {
-      elementsToScrape: [],
+      elementsToScrape: props.extensionInput ? props.extensionInput : [],
       dataSchema: [],
       urlPattern: '',
     }
