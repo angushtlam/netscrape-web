@@ -72,7 +72,6 @@ export default class Results extends React.Component {
           ) : (
             <em>Job is still running...</em>
           )}
-          
         </div>
       </div>
     )

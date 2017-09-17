@@ -26,7 +26,7 @@ export default class UrlPattern extends React.Component {
                        icon="link" />
         <SectionBody>
           <div className="component__url_pattern">
-            <input placeholder="http://google.com/search?q=hackathon&start=(0 100 10)" type="text" value={ urlPattern } onChange={ this.handleChange } />
+            <input placeholder="http://google.com/search?q=hackathon&start={0, 100, 10}" type="text" value={ urlPattern } onChange={ this.handleChange } />
           </div>
           
           <SectionTips icon="help" 
