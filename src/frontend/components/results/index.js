@@ -65,7 +65,7 @@ export default class Results extends React.Component {
           <hr />
           { completed ? (
             <div>
-              <div className="results-blob">{ JSON.stringify(results) }</div>
+              <div className="results-blob">{ JSON.stringify(results, null, 2) }</div>
               <hr />
               <a className="btn" href="/">Start New Scrape</a>
             </div>
