@@ -6,13 +6,13 @@ import requests
 from utils.resolver import resolve_url_pattern
 
 
-def parse_pages(url_pattern: str, selectors: List[str]) -> Iterator[List[str]]:
+def parse_pages(url_pattern: str, selectors: List[str]) -> Iterator[List[List[str]]]:
     for url in resolve_url_pattern(url_pattern):
         page = requests.get(url)
-        yield [selection.html() for selection in parse_html(page.content, selectors)]
+        yield list(parse_html(page.content, selectors))
 
 
-def parse_html(html: str, selectors: List[str]) -> Iterator[str]:
+def parse_html(html: str, selectors: List[str]) -> Iterator[List[str]]:
     pq = PyQuery(html)
     for selector in selectors:
-        yield pq(selector)
+        yield [element.text for element in pq(selector)]
