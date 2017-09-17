@@ -57,8 +57,8 @@ def scrape_request():
     if data is None:
         return jsonify(error="No data provided"), 400
 
-    url_pattern = data["url_pattern"]
-    schema = data["schema"]
+    url_pattern = data.get("url_pattern")
+    schema = data.get("schema")
 
     if not isinstance(url_pattern, str):
         return jsonify(error="Invalid 'url_pattern'"), 400
