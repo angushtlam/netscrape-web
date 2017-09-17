@@ -86,7 +86,7 @@ export default class Form extends React.Component {
         <div className="container">
           <h2>Start Scraping</h2>
           <div className="call-to-action">
-            <a className="btn btn-accent" href="#">Start with Extension</a>
+            <a className="btn btn-accent" href="https://drive.google.com/uc?export=download&id=0BwYPXHwwO0DCcHRwU1RjRTNVYXc">Start with Extension</a>
             <a className="btn" href="#form">Manual Input</a>
           </div>
           <hr />
