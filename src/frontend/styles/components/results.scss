@@ -1,0 +1,19 @@
+@import '../variables.scss';
+
+.component__results {
+  background-color: $accent-color;
+  color: $white-color;
+  padding: $interaction-size 0 $interaction-size * 2 0;
+
+  > .container {
+    > h2 {
+      margin-bottom: $spacing;
+    }
+
+    > .result-job-id {
+      font-size: 3.0rem;
+      font-weight: $font-weight-black;
+      margin-right: $spacing;
+    }
+  }
+}

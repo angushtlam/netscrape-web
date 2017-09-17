@@ -27,7 +27,7 @@ export default class SchemaDefinition extends React.Component {
       <div className="schema-entry" key={ i }>
         <input className="schema-key"
                type="text"
-               value={ dataSchema[i] } 
+               value={ dataSchema[i] || '' } 
                onChange={ this.handleChange(i) } />
         <span className="schema-element">: { item }</span>
       </div>
