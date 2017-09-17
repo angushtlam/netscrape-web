@@ -33,12 +33,14 @@ def _do_scrape_request(scrape_id):
     schema_keys = list(schema.keys())
     schema_values = list(schema.values())
 
-    result = []
+    results = []
     for page_selections in parse_pages(scrape.url_pattern, schema_values):
+        result = {}
         for i, selection in enumerate(page_selections):
-            result.append({schema_keys[i]: selection})
+            result[schema_keys[i]] = selection
+        results.append(result)
 
-    scrape.result = json.dumps(result)
+    scrape.result = json.dumps(results)
     scrape.completed = True
     db.session.commit()
 
