@@ -11,18 +11,20 @@ class TestParser(unittest.TestCase):
 
     def test_parse_html_site_title(self):
         selectors = ["html body header div#site-title.test1.test2"]
-        expected = ["Site Title <small>(beta)</small>"]
-        actual = [x.html() for x in parse_html(self.html, selectors)]
+        expected = [
+          ["Site Title (beta)"],
+        ]
+        actual = list(parse_html(self.html, selectors))
         self.assertCountEqual(expected, actual)
 
     def test_parse_text_multiple(self):
         selectors = [
             "html body main div.plastic-wrapper",
-            "html body footer"
+            "html body footer ul li"
         ]
         expected = [
-            "Hello World!",
-            "Left foot Right foot"
+            ["Hello World!"],
+            ["Left foot", "Right foot"],
         ]
-        actual = [x.text() for x in parse_html(self.html, selectors)]
+        actual = list(parse_html(self.html, selectors))
         self.assertCountEqual(expected, actual)

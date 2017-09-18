@@ -1,7 +1,6 @@
 from typing import Iterator, List
 
-import lxml
-from pyquery import PyQuery
+from bs4 import BeautifulSoup
 import requests
 
 from utils.resolver import resolve_url_pattern
@@ -14,6 +13,6 @@ def parse_pages(url_pattern: str, selectors: List[str]) -> Iterator[List[List[st
 
 
 def parse_html(html: str, selectors: List[str]) -> Iterator[List[str]]:
-    pq = PyQuery(html)
+    soup = BeautifulSoup(html, "html5lib")
     for selector in selectors:
-        yield [lxml.html.tostring(element, encoding=str) for element in pq(selector)]
+        yield [" ".join(element.text.split()) for element in soup.select(selector)]
