@@ -9,7 +9,7 @@ export default class Hero extends React.Component {
     const particlesParam = {
       particles: {
         number: {
-          value: 20,
+          value: 15,
           density: {
             enable: true,
             value_area: 600,

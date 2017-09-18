@@ -13,7 +13,6 @@
     > .form-submit {
       padding-bottom: $interaction-size;
       padding-top: $spacing;
-      text-align: center;
       width: 100%;
     }
   }
@@ -39,7 +38,68 @@
 
   > .section-body {
     background-color: $white-color;
+    color: $print-color;
     margin: $interaction-size 0 $interaction-size $interaction-size;
     padding: $spacing;
+
+    > .section-tips {
+      > .wrapper {
+        align-items: center;
+        display: flex;
+
+        > .tip-icon {
+          height: 32px;
+          margin-right: $spacing;
+          width: 32px;
+        }
+      }
+    }
+  }
+}
+
+.component__select_elements {
+  > .data-points {
+    > .data-point {
+      align-items: center;
+      display: flex;
+      margin-top: $spacing;
+
+      > input[type="text"] {
+        display: inline-block;
+        min-width: 80%;
+      }
+
+      > .delete-data-point {
+        display: inline-block;
+        margin-left: $spacing;
+      }
+    }
+  }
+}
+
+.component__schema_definition {
+  > .schema > .schema-entries {
+    color: $print-color;
+    font-family: 'Courier', monospace;
+    margin-left: $spacing;
+
+    > .schema-entry {
+      margin-top: $spacing;
+      display: block;
+
+      > .schema-key {
+        display: inline-block;
+      }
+  
+      > .schema-element {
+        margin-left: $spacing / 2;
+      }
+    }
+  }
+}
+
+.component__url_pattern {
+  > input[type="text"] {
+    width: 100%;
   }
 }
